@@ -33,6 +33,12 @@ export const SOUND_CUES=Object.freeze({
  rune:[note(330,330,.35),note(495,660,.4,'sine',.08,.02)],
 });
 export const SOUND_LIMITS=Object.freeze({voices:16,loops:3,range:22,cooldown:.12});
+// The per-cue voice gains are tiny (0.009–0.045). On phones the old 0.55 master measured
+// a median cue peak of only 0.0046 (-47 dBFS), i.e. barely audible through a speaker.
+// 5.0 is ~+19 dB: loud cues peak around 0.18-0.20 and an 8-cue mix around 0.25, still
+// below the -16 dBFS compressor threshold for single sounds and free of clipping.
+export const MASTER_GAIN=Object.freeze({desktop:.55,mobile:5});
+function handheld(){try{return Boolean(globalThis.matchMedia?.('(pointer:coarse)')?.matches)||(globalThis.innerWidth??1024)<=760}catch{return false}}
 export function distanceGain(source,player){if(!source||!Number.isFinite(source.x+source.z))return 1;const d=Math.hypot(source.x-player.x,source.z-player.z);return Math.max(0,1-d/SOUND_LIMITS.range)**2}
 export function soundLoops(game){
  if(game.state!=='playing')return [];
@@ -51,7 +57,7 @@ export class SoundEngine{
  constructor({context=null,createContext=()=>new (globalThis.AudioContext||globalThis.webkitAudioContext)()}={}){
   this.context=context;this.createContext=createContext;this.enabled=Boolean(context);this.voices=new Set();this.loops=new Map();this.recent=new Map();this.stats={played:0,dropped:0,peakVoices:0,cues:{}};if(context)this._connect();
  }
- _connect(){const c=this.context;this.master=c.createGain();this.master.gain.value=.55;this.compressor=c.createDynamicsCompressor();this.compressor.threshold.value=-16;this.compressor.ratio.value=5;this.master.connect(this.compressor);this.compressor.connect(c.destination);const n=c.sampleRate;this.noise=c.createBuffer(1,n,c.sampleRate);const data=this.noise.getChannelData(0);let seed=1234567;for(let i=0;i<n;i++){seed=(1664525*seed+1013904223)>>>0;data[i]=seed/2147483648-1;}}
+ _connect(){const c=this.context;this.master=c.createGain();this.master.gain.value=handheld()?MASTER_GAIN.mobile:MASTER_GAIN.desktop;this.compressor=c.createDynamicsCompressor();this.compressor.threshold.value=-16;this.compressor.ratio.value=5;this.master.connect(this.compressor);this.compressor.connect(c.destination);const n=c.sampleRate;this.noise=c.createBuffer(1,n,c.sampleRate);const data=this.noise.getChannelData(0);let seed=1234567;for(let i=0;i<n;i++){seed=(1664525*seed+1013904223)>>>0;data[i]=seed/2147483648-1;}}
  async setEnabled(value){
   const ticket=this.toggleRevision=(this.toggleRevision??0)+1;
   if(!value){this.enabled=false;this.reset();return false;}
