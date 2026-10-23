@@ -1,0 +1,46 @@
+{
+  "version": "0.34.0",
+  "date": "2026-10-23",
+  "player": {
+    "source": "source/src/character-mesh.js",
+    "stage": 4,
+    "sha256": "1ec38126ebe90e6ad2e5abab15f9f30e9838d303d0b483207cacd91f16435d22",
+    "method": "Byte-identical original mesh source; fifth-level-only per-part rigid-joint animation"
+  },
+  "chaser": {
+    "source": "User supplied full-body PNG",
+    "referenceSha256": "dd781fa79e30ed26a4e630d379e8d181f9cb431abc24754033aa97164590ba04",
+    "method": "Local procedural 3D triangle meshes, articulated head/arms/legs; side and back inferred from front view",
+    "implementation": "src/models.js",
+    "noImageBillboard": true
+  },
+  "rolling": {
+    "source": "source/src/rolling.js",
+    "sha256": "4084c67684bfd9b81022471625c91c54df82db0b22788d9cd2147f2334942118",
+    "method": "Byte-identical original rollBy quaternion integration; actual displacement, uniform whole-mesh scale"
+  },
+  "smash": {
+    "stage": 0,
+    "seconds": 8,
+    "range": 8
+  },
+  "speedStages": [
+    {
+      "start": 0,
+      "speed": 15
+    },
+    {
+      "start": 40,
+      "speed": 20
+    },
+    {
+      "start": 80,
+      "speed": 26
+    }
+  ],
+  "speedTransitionSeconds": 1,
+  "speedWarningSeconds": 2,
+  "runtimeDependencies": [],
+  "offlineFiles": 22,
+  "revision": "44e4903058c51901"
+}

@@ -1,0 +1,13 @@
+{
+  "integrity": "sha512-iC9fYR7zVT3HppNnsFsp9XOoQdQN2tUyfaKg4CHLH8bN+j6GT4Gw7IH2rP0tflAebrHFw730RR3DkVSZRX8hwA==",
+  "shasum": "dc3c95c40ea5ef8937788a2770c3f97223b352ed",
+  "tarball": "https://registry.npmjs.org/matter-js/-/matter-js-0.20.0.tgz",
+  "fileCount": 38,
+  "unpackedSize": 926734,
+  "signatures": [
+    {
+      "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+      "sig": "MEQCIDcm+5S+3OG4+5+yk66aW7xbnYHT4FV4WMXbDVp7B6uhAiAHX+y8+SnJ2iE80gbTwe/FNUsdcPD2XmHxiIWcDAFIqQ=="
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+import {RunnerRenderer} from './render.js';
+const $=id=>document.getElementById(id),renderer=new RunnerRenderer($('world'));let angle=0,time=0,running=false,kind='chaser',last=performance.now(),dirty=true;
+$('angle').oninput=e=>{angle=+e.target.value*Math.PI/180;dirty=true;};
+document.querySelectorAll('[data-angle]').forEach(b=>b.onclick=()=>{angle=+b.dataset.angle;$('angle').value=angle*180/Math.PI;document.querySelectorAll('[data-angle]').forEach(x=>x.classList.toggle('active',x===b));dirty=true;});
+$('kind').onchange=e=>{kind=e.target.value;$('name').textContent=kind==='player'?'第一关最高等级奶娃':'短发少女追击者';$('description').textContent=kind==='player'?'直接复用第一关第五阶段完全体奶龙的原始网格、五官、肚皮与尾巴，为第五关添加分部件跑步动作。':'依据参考图制作的完整三维角色。深棕短发、黑色外套与裙装、白袜和玛丽珍鞋。侧背面依据正面补全。';$('download').href=`assets/${kind==='player'?'player-stage-5':'chaser'}.glb`;dirty=true;};
+$('run').onclick=()=>{running=!running;$('run').textContent=running?'暂停奔跑':'播放奔跑';dirty=true;};let pointer=null;
+$('world').onpointerdown=e=>{pointer={x:e.clientX,angle};$('world').setPointerCapture(e.pointerId);};$('world').onpointermove=e=>{if(pointer){angle=pointer.angle+(e.clientX-pointer.x)*.009;$('angle').value=angle*180/Math.PI;dirty=true;}};$('world').onpointerup=$('world').onpointercancel=()=>pointer=null;
+window.onresize=()=>dirty=true;renderer.onRestore=()=>dirty=true;
+window.review={renderer,get kind(){return kind;},set kind(k){$('kind').value=k;$('kind').dispatchEvent(new Event('change'));},get angle(){return angle;},set angle(a){angle=a;dirty=true;},get running(){return running;},set running(v){running=v;dirty=true;},set time(t){time=t;dirty=true;}};
+function frame(now){if(!document.hidden){if(running)time+=Math.min(.05,(now-last)/1000);if(running||dirty){renderer.renderGallery({kind,angle,time,running});dirty=false;}}last=now;requestAnimationFrame(frame);}requestAnimationFrame(frame);

@@ -1,0 +1,14 @@
+{
+  "version": "0.28.0",
+  "method": "Byte-for-byte copies of existing game mesh and GPU material renderer; standalone terrain shim",
+  "files": {
+    "character-mesh.js": {
+      "source": "source/src/character-mesh.js",
+      "sha256": "1ec38126ebe90e6ad2e5abab15f9f30e9838d303d0b483207cacd91f16435d22"
+    },
+    "character-gpu.js": {
+      "source": "source/src/character-gpu.js",
+      "sha256": "61bd8682352a16b3ffd253596de888d722d26eee29cbb935aa9a4d9235e3f6cc"
+    }
+  }
+}

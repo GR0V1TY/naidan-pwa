@@ -1,18 +1,1 @@
-{
-  "id": "./",
-  "name": "奶蛋 · 口袋王国",
-  "short_name": "奶蛋",
-  "description": "探索奶油城堡小镇和糖果森林遗迹，吞噬成长，滚动冒险。",
-  "lang": "zh-CN",
-  "start_url": "./?source=pwa",
-  "scope": "./",
-  "display": "standalone",
-  "display_override": ["fullscreen", "standalone"],
-  "background_color": "#e7efdf",
-  "theme_color": "#263b35",
-  "icons": [
-    {"src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
-    {"src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
-    {"src": "icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
-  ]
-}
+{"name":"奶蛋 · 冒险地图","short_name":"奶蛋冒险","lang":"zh-CN","start_url":"./","scope":"./","display":"standalone","background_color":"#f7f6ed","theme_color":"#f7f6ed","icons":[{"src":"source/icons/icon-192.png","sizes":"192x192","type":"image/png"},{"src":"source/icons/icon-512.png","sizes":"512x512","type":"image/png"},{"src":"source/icons/maskable-512.png","sizes":"512x512","type":"image/png","purpose":"maskable"}]}

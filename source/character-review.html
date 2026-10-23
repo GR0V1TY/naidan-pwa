@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>奶蛋 · 五阶段模型</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#fff8eb;color:#60442a;font:16px system-ui}header{position:absolute;top:18px;left:24px;right:24px;pointer-events:none}header>*{pointer-events:auto}h1{font-size:24px;margin:0 0 12px}.controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center}button,select,input{font:inherit;padding:8px;border:1px solid #dfc99d;border-radius:10px;background:#fffdf6;color:#60442a}input{padding:0;width:130px;vertical-align:middle}label{white-space:nowrap}canvas{display:block;width:100vw;height:100vh;touch-action:none}p{font-size:14px;margin:10px 0;color:#856e51}a{color:#765431}dialog{max-width:96vw;border:1px solid #ddcba8;border-radius:16px;background:#fff9ed;color:#60442a;padding:18px}dialog img{display:block;max-width:88vw;max-height:75vh;object-fit:contain}dialog button{float:right}dialog::backdrop{background:#29201480}@media(max-width:600px){header{left:12px;right:12px;top:12px}h1{font-size:20px}.controls{gap:6px}input{width:90px}button,select{font-size:14px;padding:7px}}
+</style></head><body>
+<canvas id="view" aria-label="可拖动旋转的三维角色模型"></canvas>
+<header><h1>奶蛋 · 五阶段模型</h1><div class="controls"><select id="stage" aria-label="角色阶段"></select><button id="roll">开始滚动</button><button id="reset">恢复正面</button><button id="reference">对照参考图</button><label>转向 <input id="angle" type="range" min="-180" max="180" value="15"></label><label>俯仰 <input id="pitch" type="range" min="-35" max="70" value="12"></label></div><p>拖动模型可旋转视角 · 五级均为整体滚动</p><a href="/">进入游戏</a></header>
+<dialog><button id="close-reference">关闭</button><p>本次建模依据的五阶段参考图</p><img src="/character-reference.png" alt="五阶段角色原始设计参考图"></dialog>
+<script type="module" src="/src/character-review.js"></script>
+</body></html>
